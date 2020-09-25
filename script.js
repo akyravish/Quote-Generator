@@ -6,7 +6,6 @@ const newQuoteBtn = document.getElementById("new-quote");
 const loader = document.getElementById("loader");
 
 // Show Loading
-
 function loading() {
   loader.hidden = false;
   quoteContainer.hidden = true;
@@ -23,7 +22,9 @@ function complete() {
 // Get quotes from the API
 
 async function getQuote() {
+  // start loading icon
   loading();
+
   const proxyUrl = "https://cryptic-springs-95911.herokuapp.com/";
   const apiUrl =
     "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
@@ -45,6 +46,8 @@ async function getQuote() {
       quoteText.classList.remove("long-quote");
     }
     quoteText.innerText = data.quoteText;
+
+    // stop loading icon and show quote
     complete();
   } catch (error) {
     getQuote();
